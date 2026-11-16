@@ -13,10 +13,11 @@
     <title>מכרז פרו | מודיעין מכרזים ועבודות לעסקים ישירות לוואטסאפ</title>
     <meta name="description" content="מערכת מודיעין מכרזים זוטרים, בקשות להצעות מחיר ועבודות ללא ערבות הגשה בנקאית לעסקים, פרילנסרים וחברות בישראל – ישירות לוואטסאפ.">
     
-    <!-- Favicon Fix for Browser Tab -->
-    <link rel="icon" type="image/jpeg" href="./logo.jpg">
-    <link rel="shortcut icon" type="image/jpeg" href="./logo.jpg">
-    <link rel="apple-touch-icon" href="./logo.jpg">
+    <!-- Browser Tab Logo (Favicon with Cache-Buster) -->
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="./logo.jpg?v=2">
+    <link rel="icon" type="image/jpeg" sizes="192x192" href="./logo.jpg?v=2">
+    <link rel="shortcut icon" type="image/jpeg" href="/logo.jpg?v=2">
+    <link rel="apple-touch-icon" href="./logo.jpg?v=2">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -407,7 +408,7 @@
                 </div>
             </section>
 
-            <!-- Lead Capture Form (ONLY LEAD DETAILS - NO AUTO ACTIVATION) -->
+            <!-- Lead Capture Form -->
             <section id="lead-form-section" class="py-16 bg-slate-900 text-white w-full">
                 <div class="max-w-3xl mx-auto px-4 sm:px-6 w-full">
                     <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl w-full min-w-0">
@@ -484,7 +485,7 @@
                             </button>
                         </form>
 
-                        <!-- Clean Lead Confirmation Box (No Trial Mention) -->
+                        <!-- Lead Confirmation Box -->
                         <div id="successBox" class="hidden text-center py-8 space-y-4 w-full min-w-0" role="status" aria-live="polite">
                             <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center text-3xl mx-auto">✓</div>
                             <h3 class="text-2xl font-black text-emerald-400">פנייתך התקבלה בהצלחה!</h3>
@@ -622,10 +623,9 @@
         </div>
     </div>
 
-    <!-- Scripts (DISCONNECTED FROM EXISTING WEBHOOKS - READY FOR NEW LEADS WEBHOOK) -->
+    <!-- Scripts (Connected Exclusively to Your New Leads Webhook) -->
     <script>
-        // הדבק כאן בעתיד את כתובת ה-Webhook החדשה שתיצור אך ורק עבור טאב הלידים ב-Google Sheets
-        const NEW_LEADS_WEBHOOK_URL = "YOUR_NEW_LEADS_WEBHOOK_URL_HERE";
+        const NEW_LEADS_WEBHOOK_URL = "https://hook.us2.make.com/fn90vpeos7bodqno5anlwsb8w49d0607";
         const PAGE_LOAD_TIME = Date.now();
         let lastFocusedElement = null;
 
@@ -810,7 +810,6 @@
             );
         }
 
-        // Cookie Banner
         (function initCookieBanner() {
             try {
                 if (!localStorage.getItem('tp_leads_cookie_consent')) {
@@ -882,7 +881,6 @@
             const selectedCategory = sanitizeInput(document.getElementById('categorySelect').value);
             const selectedSubCategory = sanitizeInput(document.getElementById('subCategorySelect').value);
 
-            // חישוב תאריך השארת הפרטים בפורמט ישראלי (DD/MM/YYYY) ובפורמט ISO
             const now = new Date();
             const israeliDate = now.toLocaleDateString('he-IL', { timeZone: 'Asia/Jerusalem' });
             const isoDate = now.toISOString().split('T')[0];
@@ -899,14 +897,11 @@
             };
 
             try {
-                // יישלח אך ורק כשתגדיר כתובת Webhook חדשה - לא מחובר לשום דבר קיים כרגע
-                if (NEW_LEADS_WEBHOOK_URL && !NEW_LEADS_WEBHOOK_URL.includes("YOUR_NEW_LEADS_WEBHOOK")) {
-                    await fetch(NEW_LEADS_WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(leadPayload)
-                    });
-                }
+                await fetch(NEW_LEADS_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadPayload)
+                });
             } catch (err) {
                 console.error(err);
             } finally {
