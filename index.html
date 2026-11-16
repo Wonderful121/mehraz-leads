@@ -2,185 +2,764 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>טנדרפרו (TenderPro) - מודיעין מכרזים ועבודות לעסקים</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Strict Cyber Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://cdn.tailwindcss.com https://*.make.com https://*.us2.make.com https://hook.us2.make.com https://*.eu1.make.celonis.com https://*.eu2.make.celonis.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    
+    <title>מכרז פרו | מודיעין מכרזים ועבודות לעסקים ישירות לוואטסאפ</title>
+    <meta name="description" content="מערכת מודיעין מכרזים זוטרים, בקשות להצעות מחיר ועבודות ללא ערבות הגשה בנקאית לעסקים, פרילנסרים וחברות בישראל – ישירות לוואטסאפ.">
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Heebo -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Heebo', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            dark: '#070C18',
+                            navy: '#1E293B',
+                            green: '#10B981',
+                            wa: '#25D366',
+                            waDark: '#075E54',
+                            gold: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Heebo', sans-serif; }
+        :root { --site-font-scale: 1rem; }
+        
+        html, body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+            font-family: 'Heebo', sans-serif; 
+            scroll-behavior: smooth;
+            font-size: var(--site-font-scale);
+            position: relative;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit !important;
+            max-width: 100vw !important;
+        }
+
+        .wa-bg {
+            background-color: #E5DDD5;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+        .gradient-hero {
+            background: linear-gradient(135deg, #070C18 0%, #1E293B 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+        }
+        *:focus-visible {
+            outline: 3px solid #F59E0B !important;
+            outline-offset: 2px !important;
+        }
+
+        /* Accessibility Modes */
+        .accessible-content.acc-contrast { filter: grayscale(100%) contrast(150%) !important; }
+        .accessible-content.acc-invert { filter: invert(100%) hue-rotate(180deg) !important; background-color: #000 !important; color: #fff !important; }
+        
+        body.acc-highlight-links a, body.acc-highlight-links button { text-decoration: underline !important; outline: 2px solid #F59E0B !important; background-color: rgba(245, 158, 11, 0.2) !important; }
+        body.acc-highlight-headings h1, body.acc-highlight-headings h2, body.acc-highlight-headings h3 { background-color: rgba(16, 185, 129, 0.25) !important; border-right: 4px solid #10B981 !important; padding-right: 8px !important; }
+        body.acc-readable-font, body.acc-readable-font * { font-family: Arial, Helvetica, sans-serif !important; letter-spacing: 0.4px !important; }
+        body.acc-big-cursor, body.acc-big-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='%2310B981' stroke='%23FFFFFF' stroke-width='2'%3E%3Cpath d='M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z'/%3E%3C/svg%3E"), auto !important; }
+        body.acc-stop-animations *, body.acc-stop-animations *::before, body.acc-stop-animations *::after { animation: none !important; transition: none !important; }
+        
+        .sr-only-focusable:focus {
+            position: fixed; top: 12px; right: 12px; z-index: 10000;
+            background: #10B981; color: #070C18; padding: 12px 20px; font-weight: 900; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .hp-field { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; pointer-events: none; }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-header">
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-emerald-500 selection:text-white w-full overflow-x-hidden">
 
-    <!-- Hero Section -->
-    <header class="relative overflow-hidden border-b border-slate-800 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 py-16">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <!-- Logo -->
-            <div class="inline-flex items-center gap-3 mb-6 bg-slate-800/80 px-6 py-3 rounded-full border border-slate-700 shadow-lg">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-xl">🎯</div>
-                <div class="text-right">
-                    <h1 class="text-xl font-black tracking-tight text-white">טנדרפרו <span class="text-emerald-400">TenderPro</span></h1>
-                    <p class="text-xs text-slate-400 font-medium">מודיעין מכרזים ועבודות לעסקים</p>
-                </div>
+    <a href="#main-content" class="sr-only sr-only-focusable">דלג לתוכן המרכזי (ניווט מקלדת)</a>
+
+    <!-- ACCESSIBILITY FLOATING WIDGET -->
+    <div id="accessibilityWidgetContainer" style="position: fixed !important; bottom: 20px !important; left: 20px !important; z-index: 999999 !important;" class="flex flex-col items-start">
+        <div id="accMenu" class="hidden mb-3 bg-white border-2 border-slate-800 rounded-2xl shadow-2xl p-4 w-72 sm:w-80 text-slate-900 text-xs text-right" role="dialog" aria-label="תפריט התאמות נגישות">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-3">
+                <span class="font-black text-sm text-slate-900">♿ כלי נגישות (ת"י 5568 AA)</span>
+                <button type="button" onclick="toggleAccessibilityMenu()" class="text-slate-500 hover:text-slate-900 text-base font-bold px-1.5" aria-label="סגור תפריט נגישות">✕</button>
             </div>
-
-            <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-6 max-w-3xl mx-auto">
-                קבלו פניות לעבודות מעיריות וגופים ציבוריים ישירות <span class="text-emerald-400 underline decoration-emerald-500/30">וואטסאפ</span>
-            </h2>
-            <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light">
-                בלי לבזבז שעות באתרים ממשלתיים ובלי ערבויות בנקאיות. מערכת סריקה חכמה ששולחת אליכם הצעות מחיר ומכרזים זוטרים בתחום שלכם.
-            </p>
-
-            <!-- 3 Days Free Badge -->
-            <div class="inline-block bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-6 py-2.5 rounded-full text-sm font-semibold mb-8">
-                ✨ הרשמו עכשיו וקבלו 3 ימי התנסות מלאים במתנה ישירות לוואטסאפ!
+            <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="adjustFontSize(1)" class="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>הגדל טקסט</span><span>A+</span>
+                </button>
+                <button type="button" onclick="adjustFontSize(-1)" class="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>הקטן טקסט</span><span>A-</span>
+                </button>
+                <button type="button" onclick="toggleAccClass('acc-readable-font')" class="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>גופן קריא</span><span>א</span>
+                </button>
+                <button type="button" onclick="toggleContentFilter('acc-contrast')" class="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>גווני אפור</span><span>◐</span>
+                </button>
+                <button type="button" onclick="toggleContentFilter('acc-invert')" class="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>ניגודיות הפוכה</span><span>👁️</span>
+                </button>
+                <button type="button" onclick="toggleAccClass('acc-highlight-links')" class="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>הדגש קישורים</span><span>🔗</span>
+                </button>
+                <button type="button" onclick="toggleAccClass('acc-highlight-headings')" class="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>הדגש כותרות</span><span>H</span>
+                </button>
+                <button type="button" onclick="toggleAccClass('acc-big-cursor')" class="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>סמן גדול</span><span>🖱️</span>
+                </button>
+                <button type="button" onclick="toggleAccClass('acc-stop-animations')" class="col-span-2 p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 font-bold text-right flex items-center justify-between">
+                    <span>עצור אנימציות והבהובים</span><span>⏸️</span>
+                </button>
+            </div>
+            <button type="button" onclick="resetAccessibility()" class="mt-2.5 w-full p-2 border border-rose-300 text-rose-700 rounded-xl hover:bg-rose-50 font-bold text-center">
+                🔄 איפוס הגדרות נגישות
+            </button>
+            <div class="mt-3 pt-2.5 border-t border-slate-200 text-center">
+                <button type="button" onclick="openModal('accessibilityModal'); toggleAccessibilityMenu();" class="text-emerald-700 underline font-bold hover:text-emerald-900">
+                    הצהרת נגישות מלאה ופרטי רכז
+                </button>
             </div>
         </div>
-    </header>
 
-    <!-- Main Content & Form Section -->
-    <main class="max-w-4xl mx-auto px-4 py-12">
-        <div class="bg-slate-800/60 border border-slate-700/80 rounded-3xl p-6 md:p-10 shadow-2xl backdrop-blur-sm">
-            
-            <div class="text-center mb-8">
-                <h3 class="text-2xl font-bold text-white mb-2">הפעילו את ערוץ ההתראות שלכם</h3>
-                <p class="text-slate-400 text-sm">מלאו את הפרטים ובחרו את התחום שלכם כדי להתחיל את תקופת הניסיון.</p>
-            </div>
+        <button type="button" id="accTriggerBtn" onclick="toggleAccessibilityMenu()" 
+            class="w-[52px] h-[52px] rounded-full bg-slate-900 text-white border-2 border-emerald-400 shadow-2xl flex items-center justify-center text-2xl transition transform hover:scale-105 focus:outline-none" 
+            aria-label="פתח תפריט נגישות" aria-expanded="false" title="תפריט נגישות">
+            ♿
+        </button>
+    </div>
 
-            <!-- Lead Capture Form -->
-            <form id="leadForm" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Name -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">שם מלא / שם העסק</label>
-                        <input type="text" id="fullName" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" placeholder="למשל: ישראל ישראלי">
-                    </div>
-                    <!-- Phone -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">מספר וואטסאפ לקבלת ההתראות</label>
-                        <input type="tel" id="phoneNumber" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" placeholder="050-0000000">
-                    </div>
-                </div>
+    <!-- WRAPPER FOR CONTENT -->
+    <div id="accessibleContentWrapper" class="accessible-content w-full overflow-x-hidden">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Main Category -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">קטגוריית פעילות ראשית</label>
-                        <select id="categorySelect" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition">
-                            <option value="">בחר תחום עיסוק...</option>
-                            <option value="שיווק, דיגיטל, עיצוב ודפוס">שיווק, דיגיטל, עיצוב ודפוס</option>
-                            <option value="אחזקה, חשמל, מיזוג, ניקיון והדברה">אחזקה, חשמל, מיזוג, ניקיון והדברה</option>
-                            <option value="הדרכה, סדנאות וייעוץ">הדרכה, סדנאות וייעוץ</option>
-                        </select>
-                    </div>
-                    <!-- Sub Category -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">תחום התמחות ספציפי</label>
-                        <select id="subCategorySelect" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition">
-                            <option value="">בחר תחום ראשי תחילה...</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="pt-4 text-center">
-                    <button type="submit" class="w-full md:w-auto px-10 py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-lg rounded-xl shadow-lg shadow-emerald-500/20 transition transform hover:-translate-y-0.5">
-                        הפעל 3 ימי ניסיון חינם לוואטסאפ 🚀
-                    </button>
-                    <p class="text-xs text-slate-500 mt-3">ללא התחייבות • ללא צורך בכרטיס אשראי בהרשמה</p>
-                </div>
-            </form>
-
-            <!-- Success Message Box (Hidden by default) -->
-            <div id="successBox" class="hidden text-center py-8 space-y-4">
-                <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center text-3xl mx-auto">✓</div>
-                <h4 class="text-2xl font-bold text-white">הפרטים נקלטו בהצלחה!</h4>
-                <p class="text-slate-300 max-w-md mx-auto">ערוץ ההתראות שלך הופעל ל-3 ימי נסיון. ערכת הפתיחה והמכרזים הראשונים נשלחים אליך כעת לוואטסאפ.</p>
-            </div>
-
+        <!-- Top Announcement Bar -->
+        <div class="bg-emerald-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium w-full">
+            📡 חמ"ל הסריקה פעיל: מנטרים מדי יום מעל 250 רשויות מקומיות, חברות עירוניות, תאגידי מים ומשרדי ממשלה
         </div>
-    </main>
 
-    <!-- Script for Dynamic Subcategories and Form Handling -->
+        <!-- Header -->
+        <header class="sticky top-0 z-30 bg-[#070C18]/95 backdrop-blur-md border-b border-slate-800 text-white w-full">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between w-full">
+                <a href="#" class="flex items-center gap-3 group min-w-0" aria-label="מכרז פרו - דף הבית">
+                    <div class="w-12 h-12 rounded-xl bg-[#070C18] border border-slate-700/80 flex items-center justify-center shadow-lg overflow-hidden shrink-0">
+                        <img src="logo.jpg" alt="לוגו מכרז פרו" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    </div>
+                    <div class="min-w-0">
+                        <span class="font-black text-xl sm:text-2xl tracking-tight text-white block truncate">מכרז <span class="text-[#10B981]">פרו</span></span>
+                        <span class="block text-[11px] text-slate-400 font-medium -mt-1 truncate">מודיעין מכרזים ועבודות לעסקים</span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300 shrink-0" aria-label="ניווט ראשי">
+                    <a href="#simulator" class="hover:text-emerald-400 transition">דוגמאות חיות</a>
+                    <a href="#comparison" class="hover:text-emerald-400 transition">למה אנחנו?</a>
+                    <a href="#pricing" class="hover:text-emerald-400 transition">מסלולי המודיעין</a>
+                    <a href="#faq" class="hover:text-emerald-400 transition">שאלות נפוצות</a>
+                </nav>
+
+                <a href="#signup" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm px-3.5 sm:px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 transition transform hover:-translate-y-0.5 shrink-0">
+                    3 ימי ניסיון חינם ⬅
+                </a>
+            </div>
+        </header>
+
+        <main id="main-content" class="w-full overflow-x-hidden">
+            <!-- Hero Section -->
+            <section class="gradient-hero text-white pt-12 pb-20 lg:py-24 relative overflow-hidden w-full">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 items-center w-full">
+                    
+                    <div class="lg:col-span-7 space-y-6 text-right w-full min-w-0">
+                        <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-400/30 text-emerald-300 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold max-w-full">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" aria-hidden="true"></span>
+                            <span class="truncate">שירות מידע עסקי לעצמאים, פרילנסרים וחברות</span>
+                        </div>
+                        
+                        <h1 class="text-2xl sm:text-4xl lg:text-[52px] font-black leading-[1.15] tracking-tight break-words">
+                            פניות להצעות מחיר ועבודות מעיריות ומועצות מקומיות - <span class="text-transparent bg-clip-text bg-gradient-to-l from-emerald-400 to-teal-200">ישירות לוואטסאפ שלך.</span>
+                        </h1>
+                        
+                        <p class="text-slate-300 text-sm sm:text-xl leading-relaxed font-normal max-w-2xl break-words">
+                            במקום לנבור ב-250 אתרי עיריות ולקרוא חוברות PDF של 60 עמודים: חמ"ל הסריקה שלנו מאתר עבורך <strong class="text-white">רק מכרזים זוטרים, בקשות להצעות מחיר ועבודות ללא ערבות הגשה בנקאית</strong>, ומתמצת אותם ל-5 שורות ברורות בנייד.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 w-full">
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
+                                <span class="text-emerald-400 text-lg shrink-0" aria-hidden="true">✔</span>
+                                <span class="text-xs sm:text-sm font-medium">ללא ערבות הגשה בנקאית</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
+                                <span class="text-emerald-400 text-lg shrink-0" aria-hidden="true">✔</span>
+                                <span class="text-xs sm:text-sm font-medium">5 שורות תמציתיות בוואטסאפ</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
+                                <span class="text-emerald-400 text-lg shrink-0" aria-hidden="true">✔</span>
+                                <span class="text-xs sm:text-sm font-medium">קישור ישיר למסמך ההגשה</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full">
+                            <a href="#signup" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-base sm:text-lg px-8 py-4 rounded-2xl text-center shadow-xl shadow-emerald-500/25 transition transform hover:-translate-y-0.5">
+                                התחל 3 ימי ניסיון חינם בוואטסאפ
+                            </a>
+                            <div class="text-xs text-slate-400 flex flex-col justify-center space-y-1 px-2">
+                                <span>🔒 ללא התחייבות • ללא צורך בכרטיס אשראי</span>
+                                <span class="text-emerald-400 font-bold">⚡ חיבור מיידי: קבל תוך 60 שניות לוואטסאפ את המכרזים הפתוחים בתחומך!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulator -->
+                    <div class="lg:col-span-5 w-full min-w-0" id="simulator">
+                        <div class="bg-slate-800/90 border-4 border-slate-700 rounded-[2.5rem] p-3 shadow-2xl max-w-md mx-auto w-full">
+                            <div class="bg-slate-900 rounded-t-3xl p-3 border-b border-slate-700">
+                                <p class="text-[11px] text-emerald-400 font-bold text-center mb-2">👇 לחץ על התחום שלך לצפייה בדוגמת התראה:</p>
+                                <div class="grid grid-cols-3 gap-1.5" role="tablist" aria-label="בחירת תחום להדגמת התראה">
+                                    <button type="button" onclick="switchSector('marketing')" id="tab-marketing" role="tab" aria-selected="true" class="sector-tab bg-emerald-500 text-slate-950 font-bold text-xs py-2 px-1 rounded-lg transition truncate">
+                                        שיווק ודיגיטל
+                                    </button>
+                                    <button type="button" onclick="switchSector('maintenance')" id="tab-maintenance" role="tab" aria-selected="false" class="sector-tab bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium text-xs py-2 px-1 rounded-lg transition truncate">
+                                        אחזקה ובינוי
+                                    </button>
+                                    <button type="button" onclick="switchSector('training')" id="tab-training" role="tab" aria-selected="false" class="sector-tab bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium text-xs py-2 px-1 rounded-lg transition truncate">
+                                        הדרכה וייעוץ
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- WhatsApp Bar -->
+                            <div class="bg-[#075E54] text-white px-4 py-3 flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-[#070C18] border border-emerald-400/50 flex items-center justify-center overflow-hidden shrink-0 shadow">
+                                    <img src="logo.jpg" alt="לוגו מכרז פרו וואטסאפ" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                </div>
+                                <div class="min-w-0">
+                                    <div class="font-bold text-sm leading-tight truncate">מכרז פרו | התראות בזמן אמת</div>
+                                    <div class="text-[11px] text-emerald-200 truncate">מחובר • סריקה יומית אוטומטית</div>
+                                </div>
+                            </div>
+
+                            <div class="wa-bg p-4 rounded-b-3xl min-h-[340px] flex flex-col justify-center">
+                                <div class="bg-white text-slate-800 rounded-2xl rounded-tr-none p-4 shadow-md text-xs sm:text-[13px] leading-relaxed space-y-2.5 border border-slate-200/80 break-words" id="wa-message-box" aria-live="polite">
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <span class="bg-slate-900/80 text-slate-200 text-[10px] px-3 py-1 rounded-full inline-block">
+                                        * הדגמה להמחשה על בסיס פרסומים אמיתיים שנסרקו במערכת
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Problem vs Solution -->
+            <section id="comparison" class="py-16 lg:py-24 max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="text-emerald-600 font-bold text-sm uppercase tracking-wider">למה רוב העסקים הקטנים מפספסים התקשרויות עם רשויות?</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-2 break-words">
+                        עיריות מוציאות מיליונים על ספקים קטנים בפטור ממכרז — אבל המידע מפוזר ב-250 אתרים מיושנים
+                    </h2>
+                    <p class="text-slate-600 mt-3 text-base sm:text-lg break-words">
+                        רשויות מקומיות, תאגידים וחברות כלכליות מזמינים עבודות שוטפות ב"נוהל הצעות מחיר" או "מכרז זוטר" ללא ערבות הגשה בנקאית. הבעיה? אף בעל עסק לא יישב כל בוקר לחפש במאות אתרים.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 w-full">
+                    <div class="bg-white border border-rose-200 rounded-3xl p-6 sm:p-8 card-shadow w-full min-w-0">
+                        <div class="inline-block bg-rose-100 text-rose-700 font-bold text-xs px-3 py-1 rounded-full mb-4">
+                            ❌ השיטה הישנה (חיפוש ידני ובזבוז זמן)
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 break-words">הצפת מידע, פספוס מועדים ובירוקרטיה כובלת</h3>
+                        <ul class="space-y-3.5 text-sm sm:text-base text-slate-600">
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-rose-500 font-bold mt-0.5 shrink-0" aria-hidden="true">✖</span>
+                                <span class="break-words"><strong>מעבר ידני יומיומי</strong> על עשרות אתרי רשויות שונים וחיפוש בלוחות מודעות נסתרים.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-rose-500 font-bold mt-0.5" aria-hidden="true">✖</span>
+                                <span class="break-words"><strong>פספוס מועדי הגשה קצרים:</strong> מכרזים זוטרים רבים נסגרים תוך ימים ספורים בלבד.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-rose-500 font-bold mt-0.5" aria-hidden="true">✖</span>
+                                <span class="break-words"><strong>קריאת חוברות PDF ארוכות:</strong> השקעת שעות ארוכות בניתוח מסמכים מורכבים.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-900 text-white border-2 border-emerald-500 rounded-3xl p-6 sm:p-8 shadow-xl w-full min-w-0">
+                        <div class="inline-block bg-emerald-500 text-slate-950 font-bold text-xs px-3 py-1 rounded-full mb-4">
+                            ✅ המודל של מכרז פרו (מודיעין חכם לוואטסאפ)
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4 break-words">רק עבודות בגודל שלך, בלי ערבות הגשה, ישר לוואטסאפ</h3>
+                        <ul class="space-y-3.5 text-sm sm:text-base text-slate-200">
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-emerald-400 font-bold mt-0.5 shrink-0" aria-hidden="true">✔</span>
+                                <span class="break-words"><strong>סינון ערבויות מראש:</strong> סינון אוטומטי של מכרזים הדורשים ערבות הגשה בנקאית.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-emerald-400 font-bold mt-0.5" aria-hidden="true">✔</span>
+                                <span class="break-words"><strong>תקציר 5 שורות בוואטסאפ:</strong> שם הגוף, תיאור העבודה, תקציב, תנאי סף וקישור ישיר למקור.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-emerald-400 font-bold mt-0.5" aria-hidden="true">✔</span>
+                                <span class="break-words"><strong>התאמה אישית מלאה:</strong> קבלת עבודות מדויקות בהתאם לתחום ההתמחות של העסק שלך.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section (WITHOUT PRICES - LEAD GEN ONLY) -->
+            <section id="pricing" class="py-16 lg:py-24 max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="bg-emerald-100 text-emerald-800 font-bold text-xs px-3.5 py-1.5 rounded-full">מסלולים מותאמים אישית לעסקים ולחברות</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-3 break-words">
+                        הכר את מסלולי המודיעין וההתראות שלנו
+                    </h2>
+                    <p class="text-slate-600 mt-2 text-base sm:text-lg break-words">
+                        כל המסלולים מתחילים ב-<strong>3 ימי ניסיון מלאים בחינם</strong> בוואטסאפ ללא שום התחייבות או צורך בכרטיס אשראי. בחר את המסלול המתאים לעסק שלך:
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 items-stretch w-full">
+                    <!-- Plan 1: מסלול צמיחה -->
+                    <div class="bg-white border border-slate-200 rounded-3xl p-7 flex flex-col justify-between card-shadow w-full min-w-0">
+                        <div>
+                            <div class="inline-block bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full mb-3">לפרילנסרים ובעלי מקצוע</div>
+                            <h3 class="text-xl font-bold text-slate-900">מסלול צמיחה (ענף יחיד)</h3>
+                            <p class="text-xs text-slate-500 mt-1">מעקב ממוקד אחר מכרזים זוטרים וקולות קוראים בענף מרכזי אחד</p>
+                            
+                            <ul class="space-y-3 text-sm text-slate-600 border-t border-slate-100 pt-5 mt-6">
+                                <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">התראות וואטסאפ בזמן אמת לענף אחד לבחירתך</span></li>
+                                <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">חיבור מספר וואטסאפ אישי</span></li>
+                                <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">קבלת 3 מכרזים פתוחים מיד בהרשמה</span></li>
+                                <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">סינון מלא של ערבויות הגשה בנקאיות</span></li>
+                            </ul>
+                        </div>
+                        <a href="#signup" class="mt-8 w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition text-center text-sm">
+                            בחר במסלול צמיחה (3 ימי ניסיון)
+                        </a>
+                    </div>
+
+                    <!-- Plan 2: מסלול פרו (מומלץ) -->
+                    <div class="bg-slate-900 text-white border-2 border-amber-400 rounded-3xl p-7 flex flex-col justify-between shadow-2xl relative transform md:-translate-y-3 w-full min-w-0">
+                        <div class="absolute -top-3.5 right-6 bg-amber-400 text-slate-950 font-black text-xs px-3.5 py-1 rounded-full shadow">
+                            ⭐ המסלול המבוקש ביותר
+                        </div>
+                        <div>
+                            <div class="inline-block bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full mb-3">לעסקים בצמיחה מואצת</div>
+                            <h3 class="text-xl font-bold text-white">מסלול פרו (חודשי גמיש)</h3>
+                            <p class="text-xs text-slate-400 mt-1">עדיפות עליונה בקבלת התראות וגישה למאגרי ספקים פתוחים</p>
+                            
+                            <ul class="space-y-3 text-sm text-slate-200 border-t border-slate-800 pt-5 mt-6">
+                                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">כל היתרונות של מסלול צמיחה</span></li>
+                                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">עדיפות בשליחת התראות בזמן אמת ברגע הגילוי</span></li>
+                                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">ערכת רישום מוקדמת למאגרי ספקים ברשויות</span></li>
+                                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">ללא התחייבות – אפשרות ביטול בכל עת</span></li>
+                            </ul>
+                        </div>
+                        <a href="#signup" class="mt-8 w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 rounded-xl shadow-lg shadow-emerald-500/25 transition text-center text-sm">
+                            בחר במסלול פרו (3 ימי ניסיון) ⬅
+                        </a>
+                    </div>
+
+                    <!-- Plan 3: מסלול ארצי מלא -->
+                    <div class="bg-white border border-slate-200 rounded-3xl p-7 flex flex-col justify-between card-shadow w-full min-w-0">
+                        <div>
+                            <div class="inline-block bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full mb-3">לחברות וקבלנים</div>
+                            <h3 class="text-xl font-bold text-slate-900">מסלול ארצי מלא (רב-תחומי)</h3>
+                            <p class="text-xs text-slate-500 mt-1">כיסוי מלא של כלל תחומי הפעילות במקביל עבור חברות וסוכנויות</p>
+                            
+                            <ul class="space-y-3 text-sm text-slate-600 border-t border-slate-100 pt-5 mt-6">
+                                <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words"><strong>פתיחה מלאה של כל 3 הענפים במקביל</strong> (שיווק, אחזקה, הדרכה)</span></li>
+                                <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">כיסוי ארצי מורחב לכל סוגי המכרזים הזוטרים</span></li>
+                                <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold shrink-0" aria-hidden="true">✔</span> <span class="break-words">תמיכה עסקית וליווי ראשוני אישי</span></li>
+                            </ul>
+                        </div>
+                        <a href="#signup" class="mt-8 w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition text-center text-sm">
+                            בחר במסלול ארצי (3 ימי ניסיון)
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lead Form Section (Lead Generation Only - No Auto Automation/Payment) -->
+            <section id="signup" class="py-16 bg-slate-900 text-white w-full">
+                <div class="max-w-3xl mx-auto px-4 sm:px-6 w-full">
+                    <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl w-full min-w-0">
+                        <div class="text-center mb-8">
+                            <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full">איסוף לידים • 3 ימי התנסות מתנה בוואטסאפ</span>
+                            <h2 class="text-2xl sm:text-3xl font-black mt-3 break-words">הפעל עכשיו את 3 ימי הניסיון שלך</h2>
+                            <p class="text-emerald-400 font-bold text-sm mt-2 break-words">
+                                ⚡ מלא את הפרטים ובחר את תחום ההתמחות שלך כדי להתחיל את תקופת הניסיון מיידית!
+                            </p>
+                        </div>
+
+                        <form id="leadForm" onsubmit="submitLead(event)" class="space-y-4 w-full" autocomplete="on" novalidate>
+                            <div class="hp-field" aria-hidden="true">
+                                <label for="websiteUrl">Leave this field empty</label>
+                                <input type="text" id="websiteUrl" name="websiteUrl" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4 w-full">
+                                <div>
+                                    <label for="businessName" class="block text-xs font-bold text-slate-300 mb-1.5">שם מלא / שם העסק *</label>
+                                    <input type="text" id="businessName" required minlength="2" maxlength="70" placeholder="לדוגמה: א. כהן עבודות חשמל" 
+                                        class="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-4 py-3 text-sm text-white outline-none transition">
+                                </div>
+                                <div>
+                                    <label for="whatsappPhone" class="block text-xs font-bold text-slate-300 mb-1.5">מספר נייד (וואטסאפ בבעלותך בלבד) *</label>
+                                    <input type="tel" id="whatsappPhone" required maxlength="14" placeholder="050-1234567"
+                                        class="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-4 py-3 text-sm text-white outline-none transition text-left" dir="ltr">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4 w-full">
+                                <div>
+                                    <label for="categorySelect" class="block text-xs font-bold text-slate-300 mb-1.5">תחום פעילות ראשי *</label>
+                                    <select id="categorySelect" required onchange="updateSubCategories()" class="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-4 py-3 text-sm text-white outline-none transition">
+                                        <option value="שיווק, דיגיטל, עיצוב ודפוס">🎨 שיווק, דיגיטל, וידאו, עיצוב ודפוס</option>
+                                        <option value="אחזקה, חשמל, מיזוג, ניקיון והדברה">🛠️ אחזקה, חשמל, מיזוג, גינון וניקיון</option>
+                                        <option value="הדרכה, סדנאות וייעוץ">🎓 הדרכה, סדנאות, הרצאות וייעוץ</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="subCategorySelect" class="block text-xs font-bold text-slate-300 mb-1.5">תחום התמחות ספציפי *</label>
+                                    <select id="subCategorySelect" required class="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-4 py-3 text-sm text-white outline-none transition">
+                                        <!-- Populated dynamically via JS -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="planSelect" class="block text-xs font-bold text-slate-300 mb-1.5">מסלול מועדף להתעניינות</label>
+                                <select id="planSelect" class="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 rounded-xl px-4 py-3 text-sm text-white outline-none transition">
+                                    <option value="מסלול פרו (חודשי גמיש)">⭐ מסלול פרו (חודשי גמיש מומלץ)</option>
+                                    <option value="מסלול צמיחה (ענף יחיד)">מסלול צמיחה (ענף יחיד)</option>
+                                    <option value="מסלול ארצי מלא (רב-תחומי)">מסלול ארצי מלא (רב-תחומי)</option>
+                                </select>
+                            </div>
+
+                            <div id="formErrorBox" class="hidden bg-rose-950/90 border border-rose-500 text-rose-200 text-xs p-3 rounded-xl font-medium" role="alert" aria-live="assertive"></div>
+
+                            <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-3.5 space-y-2.5 w-full min-w-0">
+                                <label class="flex items-start gap-2.5 cursor-pointer">
+                                    <input type="checkbox" id="termsConsent" required class="mt-1 h-4 w-4 rounded border-slate-600 text-emerald-500 focus:ring-emerald-400 bg-slate-800 shrink-0">
+                                    <span class="text-xs text-slate-300 leading-relaxed break-words">
+                                        אני מצהיר/ה כי הנני עוסק/ת או נציג/ת עסק, <strong>כי מספר הטלפון שהוזן לעיל הינו בבעלותי ובשימושי הבלעדי</strong>, ומאשר/ת קבלת התראות מכרזים, הודעות שירות ודברי פרסומת בוואטסאפ. ידוע לי כי אוכל להסיר את עצמי בכל עת בהשבת המילה "הסר" או במייל. *
+                                    </span>
+                                </label>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-base sm:text-lg py-4 rounded-xl shadow-xl shadow-emerald-500/20 transition mt-2">
+                                הפעל 3 ימי ניסיון חינם לוואטסאפ 🚀
+                            </button>
+                        </form>
+
+                        <div id="successBox" class="hidden text-center py-6 space-y-4 w-full min-w-0" role="status" aria-live="polite">
+                            <div class="text-4xl" aria-hidden="true">🎉</div>
+                            <h3 class="text-xl font-bold text-emerald-400">הפרטים נקלטו בהצלחה!</h3>
+                            <p class="text-sm text-slate-200 leading-relaxed break-words">
+                                ערוץ ההתראות שלך הופעל ל-3 ימי נסיון. נציג מטעם "מכרז פרו" ייצור עמך קשר טלפוני בימים הקרובים להסדרת ההפעלה המלאה.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="py-16 max-w-4xl mx-auto px-4 sm:px-6 w-full">
+                <h2 class="text-2xl sm:text-3xl font-black text-center text-slate-900 mb-10 break-words">שאלות נפוצות</h2>
+                <div class="space-y-4 w-full">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 w-full min-w-0">
+                        <h3 class="font-bold text-slate-900 break-words">האם באמת לא צריך ערבות בנקאית להגשת ההצעות?</h3>
+                        <p class="text-sm text-slate-600 mt-2 leading-relaxed break-words">
+                            נכון מאוד. המערכת מסננת החוצה מכרזים שבהם זוהתה דרישה ל"ערבות מציע". אנו מתמקדים במכרזים זוטרים, נוהלי הצעות מחיר וקולות קוראים שבהם ההגשה עצמה אינה דורשת ערבות בנקאית מראש.
+                        </p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 w-full min-w-0">
+                        <h3 class="font-bold text-slate-900 break-words">מה קורה לאחר שאני משאיר פרטים בטופס?</h3>
+                        <p class="text-sm text-slate-600 mt-2 leading-relaxed break-words">
+                            הפרטים שלך נקלטו במערכת, ואתה מקבל גישה להתנסות ראשונית. נציג מטעמנו ישוחח עליך טלפונית, יבין את הצרכים המדויקים של העסק שלך ויסייע לך בהפעלת האוטומציות המלאות.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-[#070C18] text-slate-400 text-xs py-12 border-t border-slate-800 pb-24 w-full">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6 text-center w-full">
+                <div class="flex flex-col items-center justify-center gap-2">
+                    <div class="w-14 h-14 rounded-2xl bg-[#070C18] border border-slate-800 flex items-center justify-center overflow-hidden shadow-md">
+                        <img src="logo.jpg" alt="לוגו מכרז פרו" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    </div>
+                    <span class="font-black text-lg text-white">מכרז <span class="text-[#10B981]">פרו</span></span>
+                    <span class="text-[11px] text-slate-500 -mt-1">מודיעין מכרזים ועבודות לעסקים</span>
+                </div>
+                
+                <p class="text-slate-500 max-w-3xl mx-auto leading-relaxed break-words">
+                    <strong>הבהרה משפטית והגבלת אחריות:</strong> אתר ושירות "מכרז פרו" מופעלים ע"י עוסק מורשה <strong>א.ב שיווק</strong> ומספקים שירותי מידע ומודיעין עסקי לעוסקים וחברות (B2B). השירות אינו גוף ממשלתי או עירוני ואינו מייצג רשות מפרסמת כלשהי.
+                </p>
+
+                <p class="text-slate-600">© 2026 מכרז פרו (מופעל ע"י א.ב שיווק). כל הזכויות שמורות.</p>
+            </div>
+        </footer>
+
+    </div> <!-- END OF ACCESSIBLE CONTENT WRAPPER -->
+
+    <!-- Scripts with Connected Make Webhook -->
     <script>
-        // Subcategories mapping
-        const subCategoriesMap = {
+        const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/6egce4fmc3v5xr2j96e1wkpthxccwsdo";
+        const PAGE_LOAD_TIME = Date.now();
+        let lastFocusedElement = null;
+
+        // Dynamic Sub-Category Data
+        const subCategoriesData = {
             "שיווק, דיגיטל, עיצוב ודפוס": [
-                "שיווק ודיגיטל - כללי (סוכנות / משרד)",
-                "וידאו וצילום",
-                "סושיאל וקמפיינים",
-                "עיצוב גרפי ומיתוג",
-                "דפוס ושילוט"
+                { value: "שיווק ודיגיטל - כללי", text: "שיווק ודיגיטל - כללי (סוכנות / משרד פרסום)" },
+                { value: "וידאו וצילום", text: "וידאו וצילום" },
+                { value: "סושיאל וקמפיינים", text: "סושיאל וקמפיינים" },
+                { value: "עיצוב גרפי ומיתוג", text: "עיצוב גרפי ומיתוג" },
+                { value: "דפוס ושילוט", text: "דפוס ושילוט" }
             ],
             "אחזקה, חשמל, מיזוג, ניקיון והדברה": [
-                "אחזקה ותפעול - כללי (קבלן ראשי)",
-                "מיזוג אוויר",
-                "חשמל ותאורה",
-                "אינסטלציה ומשאבות",
-                "שיפוצים, זגגות ואלומיניום",
-                "גינון, ניקיון והדברה"
+                { value: "אחזקה ותפעול - כללי", text: "אחזקה ותפעול - כללי (קבלן אחזקה כללי)" },
+                { value: "מיזוג אוויר", text: "מיזוג אוויר" },
+                { value: "חשמל ותאורה", text: "חשמל ותאורה" },
+                { value: "אינסטלציה ומשאבות", text: "אינסטלציה ומשאבות" },
+                { value: "שיפוצים, זגגות ואלומיניום", text: "שיפוצים, זגגות ואלומיניום" },
+                { value: "גינון, ניקיון והדברה", text: "גינון, ניקיון והדברה" }
             ],
             "הדרכה, סדנאות וייעוץ": [
-                "הדרכה וייעוץ - כללי (חברה / מרכז)",
-                "מרצים ומנחי סדנאות",
-                "חינוך, נוער והפעלות",
-                "טיפול רגשי ורווחה",
-                "ייעוץ מומחים וכמאות"
+                { value: "הדרכה וייעוץ - כללי", text: "הדרכה וייעוץ - כללי (מרכז הדרכה / חברת ייעוץ)" },
+                { value: "מרצים ומנחי סדנאות", text: "מרצים ומנחי סדנאות" },
+                { value: "חינוך, נוער והפעלות", text: "חינוך, נוער והפעלות" },
+                { value: "טיפול רגשי ורווחה", text: "טיפול רגשי ורווחה" },
+                { value: "ייעוץ מומחים וכמאות", text: "ייעוץ מומחים וכמאות" }
             ]
         };
 
-        const categorySelect = document.getElementById('categorySelect');
-        const subCategorySelect = document.getElementById('subCategorySelect');
+        function updateSubCategories() {
+            const catSelect = document.getElementById('categorySelect');
+            const subCatSelect = document.getElementById('subCategorySelect');
+            const selectedCat = catSelect.value;
+            const subCats = subCategoriesData[selectedCat] || [];
 
-        categorySelect.addEventListener('change', function() {
-            const selectedCategory = this.value;
-            subCategorySelect.innerHTML = '<option value="">בחר תחום התמחות...</option>';
-            
-            if (subCategoriesMap[selectedCategory]) {
-                subCategoriesMap[selectedCategory].forEach(sub => {
-                    const option = document.createElement('option');
-                    option.value = sub;
-                    option.textContent = sub;
-                    subCategorySelect.appendChild(option);
-                });
+            subCatSelect.innerHTML = '';
+            subCats.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.value;
+                opt.textContent = item.text;
+                subCatSelect.appendChild(opt);
+            });
+        }
+
+        updateSubCategories();
+
+        function sanitizeInput(str) {
+            if (!str) return "";
+            let cleaned = String(str).replace(/[<>'"/\\`;|{}]/g, "").trim();
+            cleaned = cleaned.replace(/^[=+\-@]+/, "");
+            return cleaned;
+        }
+
+        function isValidIsraeliMobile(phoneStr) {
+            const digits = phoneStr.replace(/\D/g, '');
+            if (/^05[0123458]\d{7}$/.test(digits)) {
+                if (/^05\d(\d)\1{6}$/.test(digits)) return false;
+                return true;
             }
-        });
+            if (/^9725[0123458]\d{7}$/.test(digits)) {
+                return true;
+            }
+            return false;
+        }
 
-        // Form Submission handler
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
+        const sectorMessages = {
+            marketing: `
+                <div class="font-bold text-slate-900">🚨 החברה העירונית רחובות לתרבות: <span class="text-emerald-700">צילום, עריכה והפקת סרטוני Reels ותדמית</span></div>
+                <div>💰 <strong>היקף:</strong> אומדן תקציב עד 48,000 ₪</div>
+                <div>✅ <strong>תנאים:</strong> ללא ערבות הגשה! דרוש עוסק מורשה/חברה, ניהול ספרים ו-2 שנות ניסיון</div>
+                <div>⏳ <strong>הגשה:</strong> במייל ישיר לכתובת הרשות</div>
+                <div class="text-sky-600 underline font-medium">📄 למסמך המקור והגשה: ironit-rehovot.co.il</div>
+            `,
+            maintenance: `
+                <div class="font-bold text-slate-900">🚨 עיריית הוד השרון: <span class="text-emerald-700">נוהל הצעות מחיר לעבודות חשמל ותאורה במוסדות חינוך</span></div>
+                <div>💰 <strong>היקף:</strong> מכרז זוטר / הסכם מסגרת (עד 95,000 ₪)</div>
+                <div>✅ <strong>תנאים:</strong> ללא ערבות בנקאית! רישיון חשמלאי מוסמך בתוקף</div>
+                <div>⏳ <strong>הגשה:</strong> במייל / תיבת מכרזים</div>
+                <div class="text-sky-600 underline font-medium">📄 למסמך המקור והגשה: hod-hasharon.muni.il</div>
+            `,
+            training: `
+                <div class="font-bold text-slate-900">🚨 משרד הבריאות: <span class="text-emerald-700">פנייה לקבלת הצעות מחיר להנחיית סדנאות והדרכות</span></div>
+                <div>💰 <strong>היקף:</strong> שנת הפעילות הקרובה | תעריף פרויקטלי מאושר</div>
+                <div>✅ <strong>תנאים:</strong> ללא ערבות בנקאית! ניסיון מוכח בהדרכה ותעודת הכשרה</div>
+                <div>⏳ <strong>הגשה:</strong> טופס מקוון פשוט</div>
+                <div class="text-sky-600 underline font-medium">📄 למסמך המקור והגשה: mr.gov.il</div>
+            `
+        };
+
+        function switchSector(sector) {
+            if (!sectorMessages[sector]) return;
+            document.getElementById('wa-message-box').innerHTML = sectorMessages[sector];
+            document.querySelectorAll('.sector-tab').forEach(btn => {
+                btn.className = "sector-tab bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium text-xs py-2 px-2 rounded-lg transition";
+                btn.setAttribute('aria-selected', 'false');
+            });
+            const active = document.getElementById('tab-' + sector);
+            if (active) {
+                active.className = "sector-tab bg-emerald-500 text-slate-950 font-bold text-xs py-2 px-2 rounded-lg transition shadow";
+                active.setAttribute('aria-selected', 'true');
+            }
+        }
+
+        switchSector('marketing');
+
+        function toggleAccessibilityMenu() {
+            const menu = document.getElementById('accMenu');
+            const btn = document.getElementById('accTriggerBtn');
+            const isHidden = menu.classList.toggle('hidden');
+            if (btn) btn.setAttribute('aria-expanded', (!isHidden).toString());
+        }
+
+        let currentScale = 1;
+        function adjustFontSize(direction) {
+            if (direction > 0 && currentScale < 1.35) {
+                currentScale += 0.1;
+            } else if (direction < 0 && currentScale > 0.85) {
+                currentScale -= 0.1;
+            }
+            document.documentElement.style.setProperty('--site-font-scale', currentScale + 'rem');
+        }
+
+        function toggleContentFilter(className) {
+            const wrapper = document.getElementById('accessibleContentWrapper');
+            if (wrapper.classList.contains(className)) {
+                wrapper.classList.remove(className);
+            } else {
+                wrapper.classList.remove('acc-contrast', 'acc-invert');
+                wrapper.classList.add(className);
+            }
+        }
+
+        function toggleAccClass(className) {
+            document.body.classList.toggle(className);
+        }
+
+        function resetAccessibility() {
+            currentScale = 1;
+            document.documentElement.style.setProperty('--site-font-scale', '1rem');
+            document.getElementById('accessibleContentWrapper').classList.remove('acc-contrast', 'acc-invert');
+            document.body.classList.remove(
+                'acc-highlight-links',
+                'acc-highlight-headings',
+                'acc-readable-font',
+                'acc-big-cursor',
+                'acc-stop-animations'
+            );
+        }
+
+        function showFormError(msg) {
+            const box = document.getElementById('formErrorBox');
+            box.innerText = '⚠️ ' + msg;
+            box.classList.remove('hidden');
+        }
+
+        let isSubmitting = false;
+        async function submitLead(e) {
             e.preventDefault();
-            
-            let phone = document.getElementById('phoneNumber').value.trim();
-            // Clean phone number format for 972
-            phone = phone.replace(/[-,\s]/g, '');
-            if (phone.startsWith('0')) {
-                phone = '972' + phone.substring(1);
+            if (isSubmitting) return;
+            document.getElementById('formErrorBox').classList.add('hidden');
+
+            const honeypot = document.getElementById('websiteUrl').value;
+            if (honeypot) return;
+
+            if (Date.now() - PAGE_LOAD_TIME < 2500) {
+                showFormError('נא להמתין מספר שניות ולנסות שוב.');
+                return;
             }
 
-            const formData = {
-                name: document.getElementById('fullName').value,
-                phone: phone,
-                category: categorySelect.value,
-                subCategory: subCategorySelect.value,
-                plan: "3 ימי ניסיון - ללא מחיר"
+            const cleanName = sanitizeInput(document.getElementById('businessName').value);
+            const rawPhoneInput = sanitizeInput(document.getElementById('whatsappPhone').value);
+            const consentChecked = document.getElementById('termsConsent').checked;
+
+            if (cleanName.length < 2) {
+                showFormError('נא להזין שם מלא או שם עסק תקין.');
+                return;
+            }
+
+            if (!isValidIsraeliMobile(rawPhoneInput)) {
+                showFormError('נא להזין מספר טלפון נייד ישראלי תקין (לדוגמה: 050-1234567).');
+                return;
+            }
+
+            if (!consentChecked) {
+                showFormError('חובה לאשר את תנאי ההרשמה וקבלת ההתראות כדי להירשם.');
+                return;
+            }
+
+            isSubmitting = true;
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = 'שולח את הפרטים למערכת... ⏳';
+            btn.disabled = true;
+
+            let normalizedPhone = rawPhoneInput.replace(/\D/g, '');
+            if (normalizedPhone.startsWith('0')) {
+                normalizedPhone = '972' + normalizedPhone.substring(1);
+            }
+
+            const selectedCategory = sanitizeInput(document.getElementById('categorySelect').value);
+            const selectedSubCategory = sanitizeInput(document.getElementById('subCategorySelect').value);
+            const selectedPlan = sanitizeInput(document.getElementById('planSelect').value);
+
+            const nowIso = new Date().toISOString();
+            const payload = {
+                type: 'LEAD_ONLY_NO_PRICE',
+                name: cleanName,
+                phone: normalizedPhone,
+                category: selectedCategory,
+                subCategory: selectedSubCategory,
+                interestedPlan: selectedPlan,
+                status: 'ממתין לשיחת מכירה טלפונית',
+                signupDate: nowIso.split('T')[0]
             };
 
-            // Replace with your Make Webhook URL when ready
-            const WEBHOOK_URL = 'YOUR_MAKE_WEBHOOK_URL_HERE';
-
-            // Send data to Make webhook
-            if (WEBHOOK_URL !== 'YOUR_MAKE_WEBHOOK_URL_HERE') {
-                fetch(WEBHOOK_URL, {
+            try {
+                await fetch(MAKE_WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                }).catch(err => console.error('Error:', err));
+                    body: JSON.stringify(payload)
+                });
+                
+                document.getElementById('leadForm').classList.add('hidden');
+                document.getElementById('successBox').classList.remove('hidden');
+            } catch (err) {
+                document.getElementById('leadForm').classList.add('hidden');
+                document.getElementById('successBox').classList.remove('hidden');
+            } finally {
+                isSubmitting = false;
             }
-
-            // UI feedback
-            document.getElementById('leadForm').classList.add('hidden');
-            document.getElementById('successBox').classList.remove('hidden');
-        });
+        }
     </script>
 </body>
 </html>
