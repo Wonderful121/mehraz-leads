@@ -864,6 +864,15 @@
                 return;
             }
 
+            // מניעת כפילויות בדקה האחרונה בדפדפן המשתמש
+            try {
+                const lastSubmit = localStorage.getItem('tp_lead_last_submit');
+                if (lastSubmit && Date.now() - parseInt(lastSubmit, 10) < 60000) {
+                    showFormError('כבר נשלחה פנייה ממכשיר זה בדקה האחרונה. נציגנו יצרו איתך קשר בהקדם.');
+                    return;
+                }
+            } catch (err) {}
+
             isSubmitting = true;
             const btn = document.getElementById('submitBtn');
             btn.innerText = 'שולח את פנייתך... ⏳';
@@ -902,6 +911,9 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(leadPayload)
                 });
+                try {
+                    localStorage.setItem('tp_lead_last_submit', Date.now().toString());
+                } catch (e) {}
             } catch (err) {
                 console.error(err);
             } finally {
